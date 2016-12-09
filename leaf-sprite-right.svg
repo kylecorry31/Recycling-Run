@@ -15,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="leaf-sprite.svg"
+   sodipodi:docname="leaf-sprite-right.svg"
    inkscape:export-filename="C:\Users\Kylec\OneDrive\Documents\GitHub\Sustainability-For-the-Holidays\assets\leaf-forward-left.png"
    inkscape:export-xdpi="11.716913"
    inkscape:export-ydpi="11.716913">
@@ -28,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.70710678"
-     inkscape:cx="77.456799"
-     inkscape:cy="227.62327"
+     inkscape:zoom="1"
+     inkscape:cx="181.12567"
+     inkscape:cy="148.16629"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -67,7 +67,7 @@
        inkscape:connector-curvature="0" />
     <path
        style="fill:#008000;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 298.39906,721.43623 c 0,0 -8.31337,91.22894 -41.01219,115.96551 -11.67861,8.83484 -43.84062,2.82843 -43.84062,2.82843 l 7.07106,-15.55635 c 0,0 20.75541,4.28029 28.28428,-1.41421 30.5558,-23.11106 36.76955,-108.89445 36.76955,-108.89445 z"
+       d="m 298.39906,723.59308 c 0,0 -10.84914,119.05584 -53.52184,151.33763 -15.24085,11.52966 -57.21301,3.69116 -57.21301,3.69116 l 9.2279,-20.30139 c 0,0 27.08628,5.58588 36.91162,-1.84558 39.87602,-30.16045 47.9851,-142.10973 47.9851,-142.10973 z"
        id="path4238"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="csccscc" />
