@@ -1,9 +1,16 @@
 var leafStill, leftWalk;
 
-var x = 25,
-    y = 40;
+var chimneyUp;
+
 var WIDTH = 1000,
     HEIGHT = 500;
+
+var STOCKING_TOP = 150;
+var chimney_width = 200;
+
+var leaf_width = 50;
+var leaf_height = 80;
+
 var leaf;
 
 function preload() {
@@ -14,7 +21,9 @@ function preload() {
 
 function setup() {
     createCanvas(WIDTH, HEIGHT);
-    leaf = createSprite(x, y);
+    chimneyUp = createSprite(WIDTH / 2, HEIGHT / 2, chimney_width, HEIGHT);
+    chimneyUp.shapeColor = color(132, 31, 39);
+    leaf = createSprite(WIDTH / 2, HEIGHT - leaf_height);
     leaf.addImage("still", leafStill);
     leaf.addAnimation("walking", leftWalk);
     leaf.addAnimation("moveRight", moveRight);
@@ -27,42 +36,53 @@ function draw() {
     stroke(0);
     strokeWeight(4);
     rect(0, 0, WIDTH, HEIGHT);
-    if (keyIsDown(LEFT_ARROW) && !(leaf.position.x - 25 <= 0)) {
-        leaf.velocity.x = -4;
-        leaf.mirrorX(1);
-        leaf.changeAnimation("moveRight");
-    } else if (keyIsDown(RIGHT_ARROW) && !(leaf.position.x + 25 >= WIDTH)) {
-        leaf.velocity.x = 4;
-        leaf.mirrorX(-1);
-        leaf.changeAnimation("moveRight");
-    } else if (keyIsDown(DOWN_ARROW) && !(leaf.position.y + 40 >= HEIGHT)) {
-        leaf.velocity.y = 4;
-        leaf.mirrorX(1);
-        leaf.changeAnimation("walking");
-    } else if (keyIsDown(UP_ARROW) && !(leaf.position.y - 40 <= 0)) {
-        leaf.velocity.y = -4;
-        leaf.mirrorX(-1);
-        leaf.changeAnimation("walking");
-    } else {
-        leaf.mirrorX(1);
-        leaf.changeAnimation("still");
-        leaf.velocity.x = 0;
-        leaf.velocity.y = 0;
-    }
+    camera.zoom = 1;
+    camera.position.x = leaf.position.x;
+    camera.position.y = leaf.position.y;
+    handleLeafMovement();
     drawSprites();
+    camera.off();
 }
 
-/*
-image(leafSprite, x, y, 50, 80);
-if(keyIsDown(LEFT_ARROW)){
-  if(!(x <= 0))
-    x -= 4;
-} else if (keyIsDown(RIGHT_ARROW)){
-  if(!(x + 50 >= WIDTH))
-    x += 4;
-} else if(keyIsDown(DOWN_ARROW)){
-  y += 4;
-} else if (keyIsDown(UP_ARROW)){
-  y -= 4;
+function handleLeafMovement(){
+  if (keyIsDown(LEFT_ARROW)) {
+      leaf.velocity.x = -4;
+      leaf.mirrorX(1);
+      leaf.changeAnimation("moveRight");
+  } else if (keyIsDown(RIGHT_ARROW)) {
+      leaf.velocity.x = 4;
+      leaf.mirrorX(-1);
+      leaf.changeAnimation("moveRight");
+  } else if (keyIsDown(DOWN_ARROW)) {
+      leaf.velocity.y = 4;
+      leaf.mirrorX(1);
+      leaf.changeAnimation("walking");
+  } else if (keyIsDown(UP_ARROW)) {
+      leaf.velocity.y = -4;
+      leaf.mirrorX(-1);
+      leaf.changeAnimation("walking");
+  } else {
+      leaf.mirrorX(1);
+      leaf.changeAnimation("still");
+      leaf.velocity.x = 0;
+      leaf.velocity.y = 0;
+  }
+
+  if(leaf.position.y > STOCKING_TOP && leaf.position.x - leaf_width / 2 < chimneyUp.position.x - chimney_width / 2){
+    leaf.position.x = chimneyUp.position.x - chimney_width / 2 + leaf_width / 2;
+  }
+
+  if(leaf.position.y > STOCKING_TOP && leaf.position.x + leaf_width / 2 > chimneyUp.position.x + chimney_width / 2){
+    leaf.position.x = chimneyUp.position.x + chimney_width / 2 - leaf_width / 2;
+  }
+
+  if(leaf.position.x < leaf_width / 2)
+    leaf.position.x = leaf_width / 2;
+  if(leaf.position.y < leaf_height / 2)
+    leaf.position.y = leaf_height / 2;
+  if(leaf.position.x > WIDTH - leaf_width / 2)
+    leaf.position.x = WIDTH - leaf_width / 2;
+  if(leaf.position.y > HEIGHT - leaf_height / 2)
+    leaf.position.y = HEIGHT - leaf_height / 2;
+
 }
-*/
