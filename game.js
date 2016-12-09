@@ -1,6 +1,7 @@
 var leafStill, leftWalk;
 
 var chimneyUp;
+var snowLeft, snowRight;
 
 var WIDTH = 1000,
     HEIGHT = 500;
@@ -21,8 +22,12 @@ function preload() {
 
 function setup() {
     createCanvas(WIDTH, HEIGHT);
-    chimneyUp = createSprite(WIDTH / 2, HEIGHT / 2, chimney_width, HEIGHT);
-    chimneyUp.shapeColor = color(132, 31, 39);
+    // chimneyUp = createSprite(WIDTH / 2, HEIGHT / 2, chimney_width, HEIGHT);
+    // chimneyUp.shapeColor = color(132, 31, 39);
+    snowLeft = createSprite(WIDTH / 6, HEIGHT / 2 - 75 + 160, HEIGHT - 150, WIDTH / 3);
+    snowLeft.shapeColor = color(255);
+    snowRight = createSprite(WIDTH - WIDTH / 6, HEIGHT / 2 - 75 + 160, HEIGHT - 150, WIDTH / 3);
+    snowRight.shapeColor = color(255);
     leaf = createSprite(WIDTH / 2, HEIGHT - leaf_height);
     leaf.addImage("still", leafStill);
     leaf.addAnimation("walking", leftWalk);
@@ -32,9 +37,8 @@ function setup() {
 
 function draw() {
     background(255);
-    fill(255);
-    stroke(0);
-    strokeWeight(4);
+    noStroke();
+    fill(132, 31, 39);
     rect(0, 0, WIDTH, HEIGHT);
     camera.zoom = 1;
     camera.position.x = leaf.position.x;
@@ -68,13 +72,8 @@ function handleLeafMovement(){
       leaf.velocity.y = 0;
   }
 
-  if(leaf.position.y > STOCKING_TOP && leaf.position.x - leaf_width / 2 < chimneyUp.position.x - chimney_width / 2){
-    leaf.position.x = chimneyUp.position.x - chimney_width / 2 + leaf_width / 2;
-  }
-
-  if(leaf.position.y > STOCKING_TOP && leaf.position.x + leaf_width / 2 > chimneyUp.position.x + chimney_width / 2){
-    leaf.position.x = chimneyUp.position.x + chimney_width / 2 - leaf_width / 2;
-  }
+  leaf.collide(snowRight);
+  leaf.collide(snowLeft);
 
   if(leaf.position.x < leaf_width / 2)
     leaf.position.x = leaf_width / 2;
