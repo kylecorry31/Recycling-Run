@@ -20,6 +20,8 @@ var recyclables = [];
 var NUM_RECYCLABLES = 10;
 var inventory = null;
 var gameOver = false;
+var leaderboard;
+var startTime;
 
 function preload() {
     leafStill = loadImage("assets/leaf-sprite.png"); // 8:5
@@ -32,6 +34,7 @@ function preload() {
 function setup() {
     alert("Press 'd' to drop items into the correct stocking!");
     createCanvas(WIDTH, HEIGHT);
+    leaderboard = new Leaderboard("Top 10", 10);
     // chimneyUp = createSprite(WIDTH / 2, HEIGHT / 2, chimney_width, HEIGHT);
     // chimneyUp.shapeColor = color(132, 31, 39);
     snowLeft = createSprite(WIDTH / 6, HEIGHT / 2 - 75 + 160, HEIGHT - 150, WIDTH / 3);
@@ -64,6 +67,7 @@ function setup() {
     leaf.addAnimation("walking", leftWalk);
     leaf.addAnimation("moveRight", moveRight);
     leaf.changeAnimation("walking");
+    startTime = new Date();
 }
 
 function draw() {
@@ -81,6 +85,14 @@ function draw() {
         drawScore();
         if (recyclables.length == 0) {
             gameOver = true;
+            var name = prompt("What is your name?");
+            var s = {
+              score: score,
+              name: name,
+              time: (new Date() - startTime)/1000
+            };
+            leaderboard.add(s);
+            leaderboard.save();
             alert("You scored: " + score);
             location.reload();
         }
