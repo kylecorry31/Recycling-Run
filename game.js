@@ -30,6 +30,7 @@ function preload() {
 }
 
 function setup() {
+    alert("Press 'd' to drop items into the correct stocking!");
     createCanvas(WIDTH, HEIGHT);
     // chimneyUp = createSprite(WIDTH / 2, HEIGHT / 2, chimney_width, HEIGHT);
     // chimneyUp.shapeColor = color(132, 31, 39);
@@ -66,25 +67,25 @@ function setup() {
 }
 
 function draw() {
-  if(!gameOver){
-    background(255);
-    noStroke();
-    fill(132, 31, 39);
-    rect(0, 0, WIDTH, HEIGHT);
-    camera.zoom = 1;
-    camera.position.x = leaf.position.x;
-    camera.position.y = leaf.position.y;
-    handleLeafMovement();
-    displayInventory();
-    drawSprites();
-    drawScore();
-    if(recyclables.length == 0){
-      gameOver = true;
-      alert("You scored: " + score);
-      location.reload();
+    if (!gameOver) {
+        background(255);
+        noStroke();
+        fill(132, 31, 39);
+        rect(0, 0, WIDTH, HEIGHT);
+        camera.zoom = 1;
+        camera.position.x = leaf.position.x;
+        camera.position.y = leaf.position.y;
+        handleLeafMovement();
+        displayInventory();
+        drawSprites();
+        drawScore();
+        if (recyclables.length == 0) {
+            gameOver = true;
+            alert("You scored: " + score);
+            location.reload();
+        }
+        camera.off();
     }
-    camera.off();
-  }
 }
 
 function displayInventory() {
