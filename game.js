@@ -5,8 +5,8 @@ var chimneyUp;
 var snowLeft, snowRight;
 var recyclingStocking, trashStocking;
 
-var WIDTH = 1000,
-    HEIGHT = 500;
+var WIDTH = document.body.clientWidth;
+var HEIGHT = document.body.clientHeight;
 
 var score = 0;
 
@@ -27,8 +27,8 @@ function preload() {
     leafStill = loadImage("assets/leaf-sprite.png"); // 8:5
     leftWalk = loadAnimation("assets/leaf-forward-left.png", "assets/leaf-forward-right.png");
     moveRight = loadAnimation("assets/leaf-move-right.png", "assets/leaf-sprite.png");
-    recyclingStockingImage = loadImage("assets/recycling_stocking.png");
-    trashStockingImage = loadImage("assets/trash_stocking.png");
+    recyclingStockingImage = loadImage("assets/recycling.png");
+    trashStockingImage = loadImage("assets/trash.png");
 }
 
 function setup() {
@@ -36,17 +36,19 @@ function setup() {
     leaderboard = new Leaderboard("Top 10", 10);
     // chimneyUp = createSprite(WIDTH / 2, HEIGHT / 2, chimney_width, HEIGHT);
     // chimneyUp.shapeColor = color(132, 31, 39);
-    snowLeft = createSprite(WIDTH / 6, HEIGHT / 2 - 75 + 160, HEIGHT - 150, WIDTH / 3);
-    snowLeft.shapeColor = color(255);
-    snowRight = createSprite(WIDTH - WIDTH / 6, HEIGHT / 2 - 75 + 160, HEIGHT - 150, WIDTH / 3);
-    snowRight.shapeColor = color(255);
-    recyclingStocking = createSprite(WIDTH - WIDTH / 6 + 75, HEIGHT / 2 - 75 + 310);
+    // snowLeft = createSprite(WIDTH / 6, HEIGHT / 2 - 75 + 160, HEIGHT - 150, WIDTH / 3);
+    // snowLeft.shapeColor = color(0, 0, 0, 0);
+    // snowRight = createSprite(WIDTH - WIDTH / 6, HEIGHT / 2 - 75 + 160, HEIGHT - 150, WIDTH / 3);
+    // snowRight.shapeColor = color(0, 0, 0, 0);
+    recyclingStocking = createSprite(WIDTH - 220, HEIGHT - 140);
     recyclingStocking.addImage(recyclingStockingImage);
-    trashStocking = createSprite(WIDTH / 6 - 75, HEIGHT / 2 - 75 + 310);
+    recyclingStocking.depth = 5;
+    trashStocking = createSprite(220, HEIGHT - 140);
     trashStocking.addImage(trashStockingImage);
+    trashStocking.depth = 5;
     for (var i = 0; i < NUM_RECYCLABLES; i++) {
         var sprite = createSprite(random(10, WIDTH - 10), random(10, HEIGHT - 10), 10, 10);
-        if (sprite.overlap(snowRight) || sprite.overlap(snowLeft)) {
+        if (sprite.overlap(recyclingStocking) || sprite.overlap(trashStocking)) {
             i--;
             sprite.remove();
         } else {
@@ -71,10 +73,7 @@ function setup() {
 
 function draw() {
     if (!gameOver) {
-        background(255);
-        noStroke();
-        fill(83, 49, 24);
-        rect(0, 0, WIDTH, HEIGHT);
+        background(83, 49, 24);
         camera.zoom = 1;
         camera.position.x = leaf.position.x;
         camera.position.y = leaf.position.y;
@@ -86,9 +85,9 @@ function draw() {
             gameOver = true;
             var name = prompt("What is your name?");
             var s = {
-              score: score,
-              name: name,
-              time: (new Date() - startTime)/1000
+                score: score,
+                name: name,
+                time: (new Date() - startTime) / 1000
             };
             leaderboard.add(s);
             leaderboard.save();
@@ -112,7 +111,7 @@ function keyPressed() {
             inventory[1].position.y = leaf.position.y + leaf_height;
             if (inventory[1].position.y > HEIGHT)
                 inventory[1].position.y = HEIGHT;
-            inventory[1].depth = 2;
+            inventory[1].depth = 1;
             if (inventory[1].overlap(trashStocking)) {
                 if (inventory[0]) {
                     score++;
@@ -157,8 +156,8 @@ function handleLeafMovement() {
         leaf.velocity.y = 0;
     }
 
-    leaf.collide(snowRight);
-    leaf.collide(snowLeft);
+    leaf.collide(recyclingStocking);
+    leaf.collide(trashStocking);
 
     if (leaf.position.x < leaf_width / 2)
         leaf.position.x = leaf_width / 2;

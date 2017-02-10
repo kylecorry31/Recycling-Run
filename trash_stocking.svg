@@ -9,13 +9,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="175.96721mm"
-   height="220.19398mm"
-   viewBox="0 0 623.50586 780.2149"
+   width="153.65929mm"
+   height="98.922501mm"
+   viewBox="0 0 544.46204 350.51279"
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   inkscape:export-filename="C:\Users\Kylec\OneDrive\Documents\GitHub\Sustainability-For-the-Holidays\assets\recycling_stocking.png"
+   inkscape:export-filename="C:\Users\Kyle\Documents\GitHub\Recycling-Run\assets\trash.png"
    inkscape:export-xdpi="72.172539"
    inkscape:export-ydpi="72.172539"
    sodipodi:docname="trash_stocking.svg">
@@ -28,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35"
-     inkscape:cx="-325.99678"
-     inkscape:cy="652.03002"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="2.4750654"
+     inkscape:cy="236.10112"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -38,8 +38,8 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:window-width="1280"
-     inkscape:window-height="657"
+     inkscape:window-width="1536"
+     inkscape:window-height="801"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1" />
@@ -59,33 +59,36 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-26.642857,-267.57648)">
-    <path
-       style="fill:#aa4400;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 591.07727,335.21935 c 0,0 2.39307,379.09848 0,568.57143 -0.34693,27.46867 -26.10879,49.32895 -45.71429,68.57142 -20.17457,19.801 -44.305,37.7516 -71.42857,45.7143 -127.34199,37.3841 -259.01301,40.4936 -388.571425,0 -22.5795,-7.0572 -37.60367,-32.06287 -45.71429,-54.28572 -14.36694,-39.36496 -18.81821,-88.27255 0,-125.71429 11.88104,-23.63917 32.20207,-44.11373 63.693975,-47.35823 49.92966,-5.14408 162.91802,33.03715 164.87745,-21.2132 4.98128,-137.91531 0,-434.82053 0,-434.82053 z"
-       id="path4136"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="csssssasscc" />
+     transform="translate(-57.457588,-390.69223)">
     <rect
-       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-opacity:0.19607843"
-       id="rect4138"
-       width="435.71429"
-       height="110"
-       x="-649.64868"
-       y="268.07648"
-       rx="1"
-       ry="1"
-       transform="scale(-1,1)" />
+       style="fill:#aca793;fill-opacity:1;stroke:#ffffff;stroke-opacity:1"
+       id="rect4140"
+       width="482.85291"
+       height="335.37064"
+       x="88.262154"
+       y="405.33438"
+       rx="1.36568"
+       ry="1.36568" />
+    <rect
+       style="fill:#aca793;fill-opacity:1;stroke:#ffffff;stroke-opacity:1"
+       id="rect4142"
+       width="543.46204"
+       height="40.406101"
+       x="57.957588"
+       y="391.19223"
+       rx="1.36568"
+       ry="1.36568" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:63.96299362px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
-       x="349.57019"
-       y="518.8548"
-       id="text4162"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="216.46838"
+       y="598.50067"
+       id="text4146"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         id="tspan4164"
-         x="349.57019"
-         y="518.8548">Trash</tspan></text>
+         id="tspan4148"
+         x="216.46838"
+         y="598.50067"
+         style="font-size:70px">TRASH</tspan></text>
   </g>
 </svg>
