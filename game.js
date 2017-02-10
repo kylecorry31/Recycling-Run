@@ -74,7 +74,7 @@ function draw() {
     if (!gameOver) {
         background(255);
         noStroke();
-        fill(132, 31, 39);
+        fill(83, 49, 24);
         rect(0, 0, WIDTH, HEIGHT);
         camera.zoom = 1;
         camera.position.x = leaf.position.x;
