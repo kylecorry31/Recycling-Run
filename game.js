@@ -32,7 +32,6 @@ function preload() {
 }
 
 function setup() {
-    alert("Press 'd' to drop items into the correct stocking!");
     createCanvas(WIDTH, HEIGHT);
     leaderboard = new Leaderboard("Top 10", 10);
     // chimneyUp = createSprite(WIDTH / 2, HEIGHT / 2, chimney_width, HEIGHT);
@@ -108,7 +107,7 @@ function displayInventory() {
 }
 
 function keyPressed() {
-    if (keyCode == 68) {
+    if (keyCode == 32) {
         if (inventory != null) {
             inventory[1].position.y = leaf.position.y + leaf_height;
             if (inventory[1].position.y > HEIGHT)
