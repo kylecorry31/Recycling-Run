@@ -1,9 +1,9 @@
 var leafStill, leftWalk;
-var recyclingStockingImage, trashStockingImage;
+var recyclingBinImage, trashBinImage;
 
 var chimneyUp;
 var snowLeft, snowRight;
-var recyclingStocking, trashStocking;
+var recyclingBin, trashBin;
 
 var WIDTH = document.body.clientWidth;
 var HEIGHT = document.body.clientHeight;
@@ -27,8 +27,8 @@ function preload() {
     leafStill = loadImage("assets/leaf-sprite.png"); // 8:5
     leftWalk = loadAnimation("assets/leaf-forward-left.png", "assets/leaf-forward-right.png");
     moveRight = loadAnimation("assets/leaf-move-right.png", "assets/leaf-sprite.png");
-    recyclingStockingImage = loadImage("assets/recycling.png");
-    trashStockingImage = loadImage("assets/trash.png");
+    recyclingBinImage = loadImage("assets/recycling.png");
+    trashBinImage = loadImage("assets/trash.png");
 }
 
 function setup() {
@@ -40,15 +40,15 @@ function setup() {
     // snowLeft.shapeColor = color(0, 0, 0, 0);
     // snowRight = createSprite(WIDTH - WIDTH / 6, HEIGHT / 2 - 75 + 160, HEIGHT - 150, WIDTH / 3);
     // snowRight.shapeColor = color(0, 0, 0, 0);
-    recyclingStocking = createSprite(WIDTH - 220, HEIGHT - 140);
-    recyclingStocking.addImage(recyclingStockingImage);
-    recyclingStocking.depth = 5;
-    trashStocking = createSprite(220, HEIGHT - 140);
-    trashStocking.addImage(trashStockingImage);
-    trashStocking.depth = 5;
+    recyclingBin = createSprite(WIDTH - 220, HEIGHT - 140);
+    recyclingBin.addImage(recyclingBinImage);
+    recyclingBin.depth = 5;
+    trashBin = createSprite(220, HEIGHT - 140);
+    trashBin.addImage(trashBinImage);
+    trashBin.depth = 5;
     for (var i = 0; i < NUM_RECYCLABLES; i++) {
         var sprite = createSprite(random(10, WIDTH - 10), random(10, HEIGHT - 10), 10, 10);
-        if (sprite.overlap(recyclingStocking) || sprite.overlap(trashStocking)) {
+        if (sprite.overlap(recyclingBin) || sprite.overlap(trashBin)) {
             i--;
             sprite.remove();
         } else {
@@ -112,14 +112,14 @@ function keyPressed() {
             if (inventory[1].position.y > HEIGHT)
                 inventory[1].position.y = HEIGHT;
             inventory[1].depth = 1;
-            if (inventory[1].overlap(trashStocking)) {
+            if (inventory[1].overlap(trashBin)) {
                 if (inventory[0]) {
                     score++;
                 } else {
                     score--;
                 }
                 recyclables.splice(recyclables.indexOf(inventory), 1);
-            } else if (inventory[1].overlap(recyclingStocking)) {
+            } else if (inventory[1].overlap(recyclingBin)) {
                 if (inventory[0]) {
                     score--;
                 } else {
@@ -156,8 +156,8 @@ function handleLeafMovement() {
         leaf.velocity.y = 0;
     }
 
-    leaf.collide(recyclingStocking);
-    leaf.collide(trashStocking);
+    leaf.collide(recyclingBin);
+    leaf.collide(trashBin);
 
     if (leaf.position.x < leaf_width / 2)
         leaf.position.x = leaf_width / 2;
