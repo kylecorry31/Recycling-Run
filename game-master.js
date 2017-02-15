@@ -39,5 +39,10 @@ var GAME_MASTER = {
             image: "assets/trashItems/iceCream.png",
             recyclable: false,
             uid: 7
+        }, {
+          name: "Straw",
+          image: "assets/trashItems/straw.png",
+          recyclable: false,
+          uid: 8
         }] //dunkin cup, glass bottles, dunkin lids, ice cream container, greasy pizza boxes, lightbulbs, batteries
 };
