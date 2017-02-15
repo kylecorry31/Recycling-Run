@@ -222,7 +222,7 @@ function drawKeyHint() {
     fill(255);
     textSize(24);
     textAlign(RIGHT);
-    text("Move with the arrow keys\nPress 'Space' to drop items", WIDTH - 25, HEIGHT - 50);
+    text("Move with the arrow keys\nPress 'Space' to drop items", WIDTH - 25, HEIGHT - 5);
 }
 
 function drawScore() {

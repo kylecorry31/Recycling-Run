@@ -40,9 +40,14 @@ var GAME_MASTER = {
             recyclable: false,
             uid: 7
         }, {
-          name: "Straw",
-          image: "assets/trashItems/straw.png",
+            name: "Straw",
+            image: "assets/trashItems/straw.png",
+            recyclable: false,
+            uid: 8
+        }, {
+          name: "Dirty Pizza Box",
+          image: "assets/trashItems/pizzaBox.png",
           recyclable: false,
-          uid: 8
-        }] //dunkin cup, glass bottles, dunkin lids, ice cream container, greasy pizza boxes, lightbulbs, batteries
+          uid: 9
+        }] //dunkin cup, glass bottles, dunkin lids, lightbulbs, batteries
 };
