@@ -108,7 +108,7 @@ function displayLeaderboard() {
 }
 
 function loadTrash() {
-    var item_size = 25;
+    var item_size = 50;
     for (var i = 0; i < NUM_RECYCLABLES; i++) {
         var sprite = createSprite(random(item_size, WIDTH - item_size), random(item_size, HEIGHT - item_size), item_size, item_size);
         if (sprite.overlap(recyclingBin) || sprite.overlap(trashBin)) {

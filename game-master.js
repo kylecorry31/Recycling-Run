@@ -34,5 +34,5 @@ var GAME_MASTER = {
         image: "assets/trashItems/dunkinBag.png",
         recyclable: true,
         uid: 6
-    }]
+    }] //dunkin cup, glass bottles, dunkin lids, ice cream container, greasy pizza boxes, lightbulbs, batteries
 };
