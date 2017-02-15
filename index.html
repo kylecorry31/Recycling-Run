@@ -1,30 +1,60 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>Recycling Run</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.5/p5.min.js"></script>
     <script src="p5.play.js" charset="utf-8"></script>
 
     <style media="screen">
-      body, html {
-        margin: 0;
-        padding: 0;
-        text-align: center;
-        height: 100%;
-        width: 100%;
-      }
-      canvas {
-        position: absolute;
-        left: 0;
-        top: 0;
-      }
-    </style>
-  </head>
-  <body>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            height: 100%;
+            width: 100%;
+        }
 
+        canvas {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .main {
+            background: rgb(83, 49, 24);
+            height: 100%;
+            width: 100%;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+        .main p {
+          text-align: center;
+          width: 100%;
+          font-family: sans-serif;
+          text-transform: uppercase;
+          font-size: 48px;
+          font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="p5_loading" class="main">
+        <p>
+            Loading Recycling Run...
+        </p>
+    </div>
+
+    <script src="game-master.js" charset="utf-8"></script>
     <script src="game.js" charset="utf-8"></script>
     <script src="steamrail-heap/heap.js" charset="utf-8"></script>
     <script src="leaderboard.js" charset="utf-8"></script>
-  </body>
+</body>
+
 </html>

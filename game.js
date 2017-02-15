@@ -17,11 +17,12 @@ var leaf_height = 80;
 
 var leaf;
 var recyclables = [];
-var NUM_RECYCLABLES = 10;
+var NUM_RECYCLABLES = 20;
 var inventory = null;
 var gameOver = false;
 var leaderboard;
 var startTime;
+var trash_images = [];
 
 function preload() {
     leafStill = loadImage("assets/leaf-sprite.png"); // 8:5
@@ -29,6 +30,10 @@ function preload() {
     moveRight = loadAnimation("assets/leaf-move-right.png", "assets/leaf-sprite.png");
     recyclingBinImage = loadImage("assets/recycling.png");
     trashBinImage = loadImage("assets/trash.png");
+    for (var i = 0; i < GAME_MASTER.items.length; i++) {
+        var item = GAME_MASTER.items[i];
+        trash_images.push(loadImage(item.image));
+    }
 }
 
 function setup() {
@@ -46,23 +51,7 @@ function setup() {
     trashBin = createSprite(220, HEIGHT - 140);
     trashBin.addImage(trashBinImage);
     trashBin.depth = 5;
-    for (var i = 0; i < NUM_RECYCLABLES; i++) {
-        var sprite = createSprite(random(10, WIDTH - 10), random(10, HEIGHT - 10), 10, 10);
-        if (sprite.overlap(recyclingBin) || sprite.overlap(trashBin)) {
-            i--;
-            sprite.remove();
-        } else {
-            if (round(random()) == 1) {
-                sprite.shapeColor = color(0, 255, 0);
-                recyclables.push([true, sprite]);
-
-            } else {
-                sprite.shapeColor = color(0, 0, 255);
-                recyclables.push([false, sprite]);
-
-            }
-        }
-    }
+    loadTrash();
     leaf = createSprite(WIDTH / 2, HEIGHT - leaf_height);
     leaf.addImage("still", leafStill);
     leaf.addAnimation("walking", leftWalk);
@@ -81,7 +70,10 @@ function draw() {
         displayInventory();
         drawSprites();
         drawScore();
-        if (recyclables.length == 0) {
+        camera.off();
+        drawItemName();
+        drawKeyHint();
+        if (recyclables.length === 0) {
             gameOver = true;
             var name = prompt("What is your name?");
             var s = {
@@ -91,15 +83,52 @@ function draw() {
             };
             leaderboard.add(s);
             leaderboard.save();
-            alert("You scored: " + score);
-            location.reload();
+            displayLeaderboard();
+            setTimeout(function() {
+                location.reload();
+            }, 5000);
         }
-        camera.off();
+    }
+}
+
+function displayLeaderboard() {
+    var top = leaderboard.getTop10();
+    var displayable = "";
+    for (var i = 0; i < top.length; i++) {
+        displayable += top[i].name + ": " + top[i].score + " Points\n\n";
+    }
+    // alert(displayable);
+    background(83, 49, 24);
+    fill(255);
+    textAlign(CENTER);
+    textSize(32);
+    text("LEADERBOARD", WIDTH / 2, 50);
+    textSize(20);
+    text(displayable, WIDTH / 2, 150);
+}
+
+function loadTrash() {
+    var item_size = 25;
+    for (var i = 0; i < NUM_RECYCLABLES; i++) {
+        var sprite = createSprite(random(item_size, WIDTH - item_size), random(item_size, HEIGHT - item_size), item_size, item_size);
+        if (sprite.overlap(recyclingBin) || sprite.overlap(trashBin)) {
+            i--;
+            sprite.remove();
+        } else {
+            var item = GAME_MASTER.items[round(random(0, GAME_MASTER.items.length - 1))];
+            if (item.recyclable) {
+                sprite.addImage(trash_images[item.uid]);
+                recyclables.push([false, sprite, item.name]);
+            } else {
+                sprite.addImage(trash_images[item.uid]);
+                recyclables.push([true, sprite, item.name]);
+            }
+        }
     }
 }
 
 function displayInventory() {
-    if (inventory == null) return;
+    if (inventory === null) return;
     inventory[1].position.x = leaf.position.x + leaf_width / 2;
     inventory[1].position.y = leaf.position.y + 12;
     inventory[1].depth = 100;
@@ -107,12 +136,13 @@ function displayInventory() {
 
 function keyPressed() {
     if (keyCode == 32) {
-        if (inventory != null) {
+        if (inventory !== null) {
             inventory[1].position.y = leaf.position.y + leaf_height;
             if (inventory[1].position.y > HEIGHT)
                 inventory[1].position.y = HEIGHT;
             inventory[1].depth = 1;
             if (inventory[1].overlap(trashBin)) {
+                inventory[1].visible = false;
                 if (inventory[0]) {
                     score++;
                 } else {
@@ -120,6 +150,7 @@ function keyPressed() {
                 }
                 recyclables.splice(recyclables.indexOf(inventory), 1);
             } else if (inventory[1].overlap(recyclingBin)) {
+                inventory[1].visible = false;
                 if (inventory[0]) {
                     score--;
                 } else {
@@ -168,7 +199,7 @@ function handleLeafMovement() {
     if (leaf.position.y > HEIGHT - leaf_height / 2)
         leaf.position.y = HEIGHT - leaf_height / 2;
 
-    if (inventory == null) {
+    if (inventory === null) {
         for (var i = 0; i < recyclables.length; i++) {
             if (leaf.overlap(recyclables[i][1])) {
                 inventory = recyclables[i];
@@ -178,7 +209,25 @@ function handleLeafMovement() {
 
 }
 
+function drawItemName() {
+    if (inventory === null)
+        return;
+    fill(255);
+    textSize(24);
+    textAlign(LEFT);
+    text("Current item: " + inventory[2], 25, HEIGHT - 25);
+}
+
+function drawKeyHint() {
+    fill(255);
+    textSize(24);
+    textAlign(RIGHT);
+    text("Press 'Space' to drop items", WIDTH - 25, HEIGHT - 25);
+}
+
 function drawScore() {
-    fill(0);
-    text(score, leaf.position.x - 5, leaf.position.y - leaf_width / 2 - 30);
+    fill(255);
+    textSize(12);
+    textAlign(CENTER);
+    text(score, leaf.position.x, leaf.position.y - leaf_height / 2 - 5);
 }
