@@ -23,6 +23,8 @@ var gameOver = false;
 var leaderboard;
 var startTime;
 var trash_images = [];
+var incorrect = false;
+var correct = false;
 
 function preload() {
     leafStill = loadImage("assets/leaf-sprite.png"); // 8:5
@@ -62,7 +64,15 @@ function setup() {
 
 function draw() {
     if (!gameOver) {
-        background(83, 49, 24);
+        if (!incorrect && !correct) {
+            background(83, 49, 24);
+        } else if (incorrect) {
+            background(255, 0, 0);
+            incorrect = false;
+        } else if (correct) {
+            background(0, 255, 0);
+            correct = false;
+        }
         camera.zoom = 1;
         camera.position.x = leaf.position.x;
         camera.position.y = leaf.position.y;
@@ -145,16 +155,20 @@ function keyPressed() {
                 inventory[1].visible = false;
                 if (inventory[0]) {
                     score++;
+                    correct = true;
                 } else {
                     score--;
+                    incorrect = true;
                 }
                 recyclables.splice(recyclables.indexOf(inventory), 1);
             } else if (inventory[1].overlap(recyclingBin)) {
                 inventory[1].visible = false;
                 if (inventory[0]) {
                     score--;
+                    incorrect = true;
                 } else {
                     score++;
+                    correct = true;
                 }
                 recyclables.splice(recyclables.indexOf(inventory), 1);
             }
