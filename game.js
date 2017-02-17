@@ -178,19 +178,19 @@ function keyPressed() {
 }
 
 function handleLeafMovement() {
-    if (keyIsDown(LEFT_ARROW)) {
+    if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
         leaf.velocity.x = -4;
         leaf.mirrorX(1);
         leaf.changeAnimation("moveRight");
-    } else if (keyIsDown(RIGHT_ARROW)) {
+    } else if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
         leaf.velocity.x = 4;
         leaf.mirrorX(-1);
         leaf.changeAnimation("moveRight");
-    } else if (keyIsDown(DOWN_ARROW)) {
+    } else if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
         leaf.velocity.y = 4;
         leaf.mirrorX(1);
         leaf.changeAnimation("walking");
-    } else if (keyIsDown(UP_ARROW)) {
+    } else if (keyIsDown(UP_ARROW) || keyIsDown(87)) {
         leaf.velocity.y = -4;
         leaf.mirrorX(-1);
         leaf.changeAnimation("walking");
