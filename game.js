@@ -145,7 +145,9 @@ function displayInventory() {
 }
 
 function keyPressed() {
-    if (keyCode == 32) {
+    var space = 32;
+    var shift = 16;
+    if (keyCode === space || keyCode === shift ) {
         if (inventory !== null) {
             inventory[1].position.y = leaf.position.y + leaf_height;
             if (inventory[1].position.y > HEIGHT)
